@@ -3,13 +3,22 @@ import { StatCard } from "@/components/StatCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
+import { getCourseById, studyPlanBySemester } from "@/data/studyPlanData";
 
 export default function Dashboard() {
-  const upcomingCourses = [
-    { id: 1, code: "CS401", name: "Advanced Algorithms", semester: "Fall 2025", credits: 4 },
-    { id: 2, code: "CS402", name: "Machine Learning", semester: "Fall 2025", credits: 4 },
-    { id: 3, code: "CS403", name: "Database Systems", semester: "Fall 2025", credits: 3 },
-  ];
+  // Get upcoming courses for Year 4, Semester 1
+  const upcomingCourseIds = studyPlanBySemester.year4.semester1;
+  const upcomingCourses = upcomingCourseIds
+    .map(id => getCourseById(id))
+    .filter(course => course && course.credits > 0)
+    .slice(0, 3)
+    .map((course, index) => ({
+      id: index + 1,
+      code: course!.code,
+      name: course!.name,
+      semester: "Fall 2025",
+      credits: course!.credits,
+    }));
 
   const recentActivity = [
     { id: 1, action: "Plan approved by advisor", time: "2 hours ago", type: "success" },

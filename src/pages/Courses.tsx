@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Search, Filter } from "lucide-react";
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -11,84 +10,50 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { allCourses, Course } from "@/data/studyPlanData";
 
 export default function Courses() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [department, setDepartment] = useState("all");
+  const [typeFilter, setTypeFilter] = useState("all");
 
-  const courses = [
-    {
-      id: 1,
-      code: "CS401",
-      name: "Advanced Algorithms",
-      department: "Computer Science",
-      credits: 4,
-      prerequisites: ["CS201", "CS202"],
-      description: "Study of advanced algorithmic techniques and complexity analysis.",
-      availability: "Fall 2024",
-      enrolled: 28,
-      capacity: 35,
-      eligible: true,
-    },
-    {
-      id: 2,
-      code: "CS402",
-      name: "Machine Learning",
-      department: "Computer Science",
-      credits: 4,
-      prerequisites: ["CS301", "MATH210"],
-      description: "Introduction to machine learning algorithms and applications.",
-      availability: "Fall 2024",
-      enrolled: 32,
-      capacity: 35,
-      eligible: true,
-    },
-    {
-      id: 3,
-      code: "CS403",
-      name: "Database Systems",
-      department: "Computer Science",
-      credits: 3,
-      prerequisites: ["CS201"],
-      description: "Design and implementation of modern database systems.",
-      availability: "Fall 2024",
-      enrolled: 25,
-      capacity: 30,
-      eligible: true,
-    },
-    {
-      id: 4,
-      code: "CS501",
-      name: "Advanced AI",
-      department: "Computer Science",
-      credits: 4,
-      prerequisites: ["CS402", "CS403"],
-      description: "Deep dive into artificial intelligence and neural networks.",
-      availability: "Spring 2025",
-      enrolled: 0,
-      capacity: 30,
-      eligible: false,
-    },
-  ];
-
-  const filteredCourses = courses.filter((course) => {
+  const filteredCourses = allCourses.filter((course) => {
     const matchesSearch = course.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          course.code.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesDepartment = department === "all" || course.department === department;
-    return matchesSearch && matchesDepartment;
+    const matchesType = typeFilter === "all" || course.type === typeFilter;
+    return matchesSearch && matchesType;
   });
+
+  const getTypeLabel = (type: Course['type']) => {
+    switch (type) {
+      case 'university': return 'University Req.';
+      case 'faculty': return 'Faculty Req.';
+      case 'core': return 'Core';
+      case 'elective': return 'Elective';
+      default: return type;
+    }
+  };
+
+  const getTypeBadgeVariant = (type: Course['type']): "default" | "secondary" | "outline" | "destructive" | null | undefined => {
+    switch (type) {
+      case 'university': return 'secondary';
+      case 'faculty': return 'outline';
+      case 'core': return 'default';
+      case 'elective': return 'secondary';
+      default: return 'secondary';
+    }
+  };
 
   return (
     <div className="space-y-6">
       <div>
         <h2 className="text-3xl font-bold text-foreground mb-2">Course Catalog</h2>
-        <p className="text-muted-foreground">Browse and search available courses</p>
+        <p className="text-muted-foreground">Browse and search available courses for Computer Information Systems</p>
       </div>
 
       <Card>
         <CardHeader>
           <CardTitle>Search & Filter</CardTitle>
-          <CardDescription>Find the perfect courses for your study plan</CardDescription>
+          <CardDescription>Find courses from the CIS study plan (132 credit hours total)</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex gap-4">
@@ -101,71 +66,89 @@ export default function Courses() {
                 className="pl-10"
               />
             </div>
-            <Select value={department} onValueChange={setDepartment}>
-              <SelectTrigger className="w-[200px]">
-                <SelectValue placeholder="Department" />
+            <Select value={typeFilter} onValueChange={setTypeFilter}>
+              <SelectTrigger className="w-[220px]">
+                <SelectValue placeholder="Course Type" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Departments</SelectItem>
-                <SelectItem value="Computer Science">Computer Science</SelectItem>
-                <SelectItem value="Mathematics">Mathematics</SelectItem>
-                <SelectItem value="Physics">Physics</SelectItem>
+                <SelectItem value="all">All Types</SelectItem>
+                <SelectItem value="university">University Requirements</SelectItem>
+                <SelectItem value="faculty">Faculty Requirements</SelectItem>
+                <SelectItem value="core">Core Courses</SelectItem>
+                <SelectItem value="elective">Elective Courses</SelectItem>
               </SelectContent>
             </Select>
-            <Button variant="outline">
-              <Filter className="h-4 w-4 mr-2" />
-              More Filters
-            </Button>
+          </div>
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <span>Total courses: {filteredCourses.length}</span>
           </div>
         </CardContent>
       </Card>
 
-      <div className="grid gap-4">
-        {filteredCourses.map((course) => (
-          <Card key={course.id} className="hover:shadow-md transition-shadow">
-            <CardHeader>
-              <div className="flex items-start justify-between">
-                <div className="space-y-1">
-                  <div className="flex items-center gap-3">
-                    <CardTitle className="text-xl">{course.code}</CardTitle>
-                    <Badge variant={course.eligible ? "default" : "secondary"}>
-                      {course.eligible ? "Eligible" : "Prerequisites Required"}
+      <Card>
+        <CardContent className="p-6">
+          <div className="grid gap-4">
+            {filteredCourses.map((course) => (
+              <Card key={course.id} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <CardTitle className="text-xl">{course.code}</CardTitle>
+                      <CardDescription className="mt-1 text-base font-medium text-foreground">
+                        {course.name}
+                      </CardDescription>
+                    </div>
+                    <Badge variant={getTypeBadgeVariant(course.type)}>
+                      {getTypeLabel(course.type)}
                     </Badge>
-                    <Badge variant="outline">{course.credits} Credits</Badge>
                   </div>
-                  <CardDescription className="text-base font-medium text-foreground">
-                    {course.name}
-                  </CardDescription>
-                </div>
-                <Button variant={course.eligible ? "default" : "outline"} disabled={!course.eligible}>
-                  {course.eligible ? "Enroll" : "View Prerequisites"}
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground mb-4">{course.description}</p>
-              <div className="flex items-center gap-6 text-sm">
-                <div>
-                  <span className="text-muted-foreground">Department: </span>
-                  <span className="font-medium">{course.department}</span>
-                </div>
-                <div>
-                  <span className="text-muted-foreground">Availability: </span>
-                  <span className="font-medium">{course.availability}</span>
-                </div>
-                <div>
-                  <span className="text-muted-foreground">Enrollment: </span>
-                  <span className="font-medium">{course.enrolled}/{course.capacity}</span>
-                </div>
-                <div>
-                  <span className="text-muted-foreground">Prerequisites: </span>
-                  <span className="font-medium">{course.prerequisites.join(", ")}</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-muted-foreground">Credits</span>
+                      <Badge variant="secondary">{course.credits} Credits</Badge>
+                    </div>
+                    
+                    {course.prerequisites.length > 0 && (
+                      <div className="flex items-start gap-2 text-sm">
+                        <span className="text-muted-foreground whitespace-nowrap">Prerequisites:</span>
+                        <div className="flex flex-wrap gap-1">
+                          {course.prerequisites.map((prereq, index) => (
+                            <Badge key={index} variant="outline" className="text-xs">
+                              {prereq}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    
+                    {course.description && (
+                      <p className="text-sm text-muted-foreground pt-2">
+                        {course.description}
+                      </p>
+                    )}
+
+                    {course.year && course.semester && (
+                      <div className="flex items-center justify-between text-sm pt-2">
+                        <span className="text-muted-foreground">Recommended</span>
+                        <span className="font-medium">Year {course.year}, Semester {course.semester}</span>
+                      </div>
+                    )}
+
+                    {course.department && (
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-muted-foreground">Department</span>
+                        <span className="font-medium">{course.department}</span>
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
