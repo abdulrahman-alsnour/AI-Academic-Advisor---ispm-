@@ -6,9 +6,9 @@ import { Badge } from "@/components/ui/badge";
 
 export default function Dashboard() {
   const upcomingCourses = [
-    { id: 1, code: "CS401", name: "Advanced Algorithms", semester: "Fall 2024", credits: 4 },
-    { id: 2, code: "CS402", name: "Machine Learning", semester: "Fall 2024", credits: 4 },
-    { id: 3, code: "CS403", name: "Database Systems", semester: "Fall 2024", credits: 3 },
+    { id: 1, code: "CS401", name: "Advanced Algorithms", semester: "Fall 2025", credits: 4 },
+    { id: 2, code: "CS402", name: "Machine Learning", semester: "Fall 2025", credits: 4 },
+    { id: 3, code: "CS403", name: "Database Systems", semester: "Fall 2025", credits: 3 },
   ];
 
   const recentActivity = [
@@ -29,7 +29,7 @@ export default function Dashboard() {
           title="Completed Credits"
           value="84"
           icon={Award}
-          description="Out of 120 required"
+          description="Out of 132 required"
           trend="+12 this semester"
           trendUp={true}
         />
@@ -45,13 +45,13 @@ export default function Dashboard() {
           title="Enrolled Courses"
           value="5"
           icon={BookOpen}
-          description="Fall 2024"
+          description="Fall 2025"
         />
         <StatCard
           title="Graduation Progress"
           value="70%"
           icon={Calendar}
-          description="Expected: May 2025"
+          description="Expected: May 2026"
         />
       </div>
 
@@ -89,7 +89,7 @@ export default function Dashboard() {
         <Card>
           <CardHeader>
             <CardTitle>Upcoming Courses</CardTitle>
-            <CardDescription>Registered for Fall 2024</CardDescription>
+            <CardDescription>Registered for Fall 2025</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
