@@ -17,21 +17,21 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    /* Professional blue for education/trust */
-    --primary: 217 91% 60%;
+    /* Professional green for education/trust */
+    --primary: 142 71% 45%;
     --primary-foreground: 0 0% 100%;
     
-    /* Lighter blue for secondary actions */
-    --secondary: 214 95% 93%;
-    --secondary-foreground: 217 91% 60%;
+    /* Lighter green for secondary actions */
+    --secondary: 142 50% 93%;
+    --secondary-foreground: 142 71% 45%;
 
     /* Soft gray backgrounds */
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
 
     /* Subtle accent */
-    --accent: 210 40% 96%;
-    --accent-foreground: 217 91% 60%;
+    --accent: 142 40% 96%;
+    --accent-foreground: 142 71% 45%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -44,20 +44,20 @@ All colors MUST be HSL.
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 217 91% 60%;
+    --border: 142 32% 91%;
+    --input: 142 32% 91%;
+    --ring: 142 71% 45%;
 
     --radius: 0.75rem;
 
     /* Sidebar styling */
-    --sidebar-background: 217 91% 60%;
+    --sidebar-background: 142 71% 45%;
     --sidebar-foreground: 0 0% 100%;
     --sidebar-primary: 0 0% 100%;
-    --sidebar-primary-foreground: 217 91% 60%;
-    --sidebar-accent: 217 91% 55%;
+    --sidebar-primary-foreground: 142 71% 45%;
+    --sidebar-accent: 142 71% 40%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 217 91% 55%;
+    --sidebar-border: 142 71% 40%;
     --sidebar-ring: 0 0% 100%;
 
     /* Smooth transitions */
@@ -79,16 +79,16 @@ All colors MUST be HSL.
     --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 217 91% 60%;
+    --primary: 142 71% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 217 33% 17%;
+    --secondary: 142 33% 17%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217 33% 17%;
+    --muted: 142 33% 17%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 217 33% 17%;
+    --accent: 142 33% 17%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 63% 31%;
@@ -100,18 +100,18 @@ All colors MUST be HSL.
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 217 91% 60%;
+    --border: 142 33% 17%;
+    --input: 142 33% 17%;
+    --ring: 142 71% 45%;
 
     --sidebar-background: 222 47% 11%;
     --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary: 142 71% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent: 142 33% 17%;
     --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217 33% 17%;
-    --sidebar-ring: 217 91% 60%;
+    --sidebar-border: 142 33% 17%;
+    --sidebar-ring: 142 71% 45%;
   }
 }
 

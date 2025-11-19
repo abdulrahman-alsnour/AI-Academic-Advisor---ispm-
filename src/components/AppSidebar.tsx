@@ -29,10 +29,12 @@ export function AppSidebar() {
   return (
     <Sidebar className="border-r border-sidebar-border">
       <SidebarHeader className="p-6 border-b border-sidebar-border">
-        <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-sidebar-primary flex items-center justify-center">
-            <BookOpen className="h-5 w-5 text-sidebar-primary-foreground" />
-          </div>
+        <div className="flex items-center gap-3">
+          <img 
+            src="/src/assets/university-logo.png" 
+            alt="University of Jordan Logo" 
+            className="h-12 w-12 object-contain"
+          />
           <div>
             <h2 className="text-lg font-semibold text-sidebar-foreground">AI Advisor</h2>
             <p className="text-xs text-sidebar-foreground/70">Academic Planning</p>
