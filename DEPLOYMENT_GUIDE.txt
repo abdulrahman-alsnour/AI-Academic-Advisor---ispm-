@@ -1,0 +1,94 @@
+DEPLOYMENT GUIDE - AI Academic Advisor
+======================================
+
+STEP 1: CREATE NEW GITHUB REPOSITORY
+-------------------------------------
+1. Go to https://github.com and log in
+2. Click the "+" icon in the top right corner
+3. Select "New repository"
+4. Repository name: "ai-academic-advisor" (or your preferred name)
+5. Description: "AI Academic Advisor System for University of Jordan"
+6. Choose: Public or Private (your choice)
+7. DO NOT initialize with README, .gitignore, or license (we already have code)
+8. Click "Create repository"
+
+STEP 2: PREPARE YOUR LOCAL CODE
+--------------------------------
+1. Open terminal/command prompt in your project folder
+2. Make sure you're in the plan-my-major directory
+
+STEP 3: INITIALIZE GIT (IF NOT ALREADY DONE)
+--------------------------------------------
+Run these commands:
+  git init
+  git add .
+  git commit -m "Initial commit: AI Academic Advisor System"
+
+STEP 4: CONNECT TO GITHUB AND PUSH
+-----------------------------------
+After creating the repo, GitHub will show you commands. Use these:
+
+  git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+  git branch -M main
+  git push -u origin main
+
+(Replace YOUR_USERNAME and YOUR_REPO_NAME with your actual GitHub username and repo name)
+
+STEP 5: DEPLOY TO VERCEL (RECOMMENDED - EASIEST)
+-------------------------------------------------
+Option A: Vercel (Recommended)
+1. Go to https://vercel.com
+2. Sign up/Login with your GitHub account
+3. Click "Add New Project"
+4. Import your GitHub repository
+5. Vercel will auto-detect it's a Vite project
+6. Click "Deploy"
+7. Your site will be live in 2-3 minutes!
+8. You'll get a URL like: https://your-project.vercel.app
+
+Option B: Netlify
+1. Go to https://netlify.com
+2. Sign up/Login with GitHub
+3. Click "Add new site" > "Import an existing project"
+4. Select your GitHub repository
+5. Build settings:
+   - Build command: npm run build
+   - Publish directory: dist
+6. Click "Deploy site"
+7. Your site will be live!
+
+Option C: GitHub Pages
+1. In your GitHub repo, go to Settings > Pages
+2. Source: Deploy from a branch
+3. Branch: main
+4. Folder: / (root)
+5. But first, you need to configure Vite for GitHub Pages:
+   - Update vite.config.ts (see below)
+
+STEP 6: CONFIGURE FOR DEPLOYMENT
+--------------------------------
+If using GitHub Pages, update vite.config.ts:
+
+  export default defineConfig({
+    base: '/your-repo-name/',  // Add this line
+    // ... rest of config
+  })
+
+For Vercel/Netlify: No configuration needed!
+
+STEP 7: TEST YOUR DEPLOYED SITE
+---------------------------------
+1. Visit your deployment URL
+2. Test login functionality
+3. Test student and admin features
+4. Check all pages load correctly
+
+TROUBLESHOOTING
+---------------
+- If build fails: Check that all dependencies are in package.json
+- If routes don't work: Make sure you're using client-side routing (React Router)
+- If images don't load: Check image paths are correct
+- For GitHub Pages: May need to use HashRouter instead of BrowserRouter
+
+RECOMMENDED: Use Vercel - it's the easiest and works perfectly with React/Vite!
+

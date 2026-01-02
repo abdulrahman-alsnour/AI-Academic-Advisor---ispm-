@@ -6,6 +6,7 @@ import {
   Bell 
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
+import { useAuth } from "@/contexts/AuthContext";
 import {
   Sidebar,
   SidebarContent,
@@ -17,15 +18,27 @@ import {
   SidebarHeader,
 } from "@/components/ui/sidebar";
 
-const menuItems = [
+const allMenuItems = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
   { title: "Courses", url: "/courses", icon: BookOpen },
   { title: "AI Chatbot", url: "/chatbot", icon: MessageSquare },
-  { title: "Advisor", url: "/advisor", icon: UserCheck },
+  { title: "Advisor", url: "/advisor", icon: UserCheck, adminOnly: true },
   { title: "Notifications", url: "/notifications", icon: Bell },
 ];
 
 export function AppSidebar() {
+  const { isAdmin } = useAuth();
+
+  const menuItems = allMenuItems.filter(item => {
+    if (isAdmin) {
+      // Admins only see Advisor
+      return item.adminOnly === true;
+    } else {
+      // Students see everything except Advisor
+      return !item.adminOnly;
+    }
+  });
+
   return (
     <Sidebar className="border-r border-sidebar-border">
       <SidebarHeader className="p-6 border-b border-sidebar-border">

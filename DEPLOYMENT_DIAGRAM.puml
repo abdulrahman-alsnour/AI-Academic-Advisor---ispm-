@@ -1,0 +1,106 @@
+@startuml Deployment Diagram - AI Academic Advisor
+
+title Deployment Architecture
+
+node "Client Browser" {
+  component "React Application" as ReactApp {
+    [User Interface]
+    [State Management]
+    [Routing]
+  }
+  
+  database "localStorage" as LocalStorage {
+    [Session Data]
+    [User Preferences]
+  }
+}
+
+node "Web Server" {
+  component "Static Files" as StaticFiles {
+    [HTML]
+    [CSS]
+    [JavaScript Bundles]
+    [Assets]
+  }
+  
+  component "Vite Dev Server" as ViteServer #LightBlue
+}
+
+cloud "Backend Services" #LightGreen {
+  component "API Server" as APIServer {
+    [REST API]
+    [GraphQL Endpoint]
+  }
+  
+  database "Application Database" as AppDatabase {
+    [Student Study Plans]
+    [Plan Approvals]
+    [Notifications]
+    [AI Chat History]
+  }
+  
+  component "Authentication Service" as AuthBackend {
+    [JWT Tokens]
+    [User Management]
+  }
+  
+  component "AI Service" as AIServiceBackend {
+    [Chatbot API]
+    [Recommendation Engine]
+  }
+}
+
+cloud "University Systems" #LightYellow {
+  component "Student Registration System" as RegSystem {
+    [Student Information]
+    [Enrollment Data]
+    [Academic Records]
+    [GPA & Credits]
+    [Course History]
+  }
+  
+  database "University Database" as UniDatabase {
+    [Student Profiles]
+    [Course Catalog]
+    [Academic Records]
+    [Registration Data]
+  }
+}
+
+ReactApp --> LocalStorage : "Store Session"
+ReactApp --> ViteServer : "Development"
+ReactApp --> StaticFiles : "Production"
+ReactApp --> APIServer : "API Calls"
+
+APIServer --> AppDatabase : "Application Data"
+APIServer --> AuthBackend : "Authentication"
+APIServer --> AIServiceBackend : "AI Features"
+APIServer --> RegSystem : "Fetch Student Data"
+RegSystem --> UniDatabase : "Query Records"
+
+note right of ReactApp
+  **Current State:**
+  - Frontend-only application
+  - Sample data in code
+  - localStorage for sessions
+  - Ready for backend integration
+end note
+
+note right of APIServer
+  **Backend Services:**
+  - RESTful API endpoints
+  - Database integration
+  - Real authentication
+  - AI service integration
+end note
+
+note right of RegSystem
+  **University Integration:**
+  - Student data retrieval
+  - Academic records sync
+  - Enrollment information
+  - GPA and credit tracking
+  - Real-time data updates
+end note
+
+@enduml

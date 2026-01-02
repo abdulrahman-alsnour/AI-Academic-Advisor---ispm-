@@ -1,0 +1,94 @@
+@startuml AI Academic Advisor - System Architecture
+
+title AI Academic Advisor - System Architecture
+
+actor Student as student
+actor "Academic Advisor" as admin
+
+rectangle "Frontend Application" {
+  component "Login Page" as login
+  component "Student Dashboard" as studentDash
+  component "Course Catalog" as courses
+  component "AI Chatbot" as chatbot
+  component "Notifications" as notifications
+  component "Advisor Dashboard" as advisorDash
+}
+
+rectangle "Application Services" {
+  component "Authentication" as auth
+  component "Course Management" as courseMgmt
+  component "Plan Management" as planMgmt
+  component "AI Service" as ai
+  component "Notification Service" as notify
+}
+
+rectangle "Data Storage" {
+  database "Course Data" as courseData {
+    [132 Credit Hours]
+    [Prerequisites]
+    [Course Info]
+  }
+  
+  database "Student Data" as studentData {
+    [Student Profiles]
+    [Study Plans]
+    [Progress Records]
+  }
+  
+  storage "Session Storage" as session {
+    [User Sessions]
+  }
+}
+
+' User connections
+student --> login : "Login"
+admin --> login : "Login"
+
+' Authentication flow
+login --> auth : "Authenticate"
+auth --> session : "Store Session"
+
+' Student features
+student --> studentDash : "View Dashboard"
+studentDash --> courseMgmt : "Get Courses"
+studentDash --> planMgmt : "Get Progress"
+student --> courses : "Browse Catalog"
+courses --> courseMgmt : "Search/Filter"
+student --> chatbot : "Ask Questions"
+chatbot --> ai : "Process Query"
+student --> notifications : "View Alerts"
+notifications --> notify : "Get Updates"
+
+' Admin features
+admin --> advisorDash : "Review Plans"
+advisorDash --> planMgmt : "Get Plans"
+planMgmt --> planMgmt : "Approve/Reject"
+
+' Data connections
+courseMgmt --> courseData : "Read"
+planMgmt --> studentData : "Read/Write"
+ai --> courseData : "Read"
+notify --> studentData : "Read"
+
+note right of auth
+  **Authentication:**
+  - Email/Password
+  - Role Selection
+  - Session Management
+end note
+
+note right of studentDash
+  **Student Features:**
+  - Progress Tracking
+  - GPA Display
+  - Course Recommendations
+end note
+
+note right of advisorDash
+  **Admin Features:**
+  - Plan Review
+  - Approve/Reject
+  - Status Management
+end note
+
+@enduml

@@ -8,9 +8,9 @@ export default function Advisor() {
   const studentPlans = [
     {
       id: 1,
-      studentName: "John Smith",
+      studentName: "Sara Ahmad",
       studentId: "CS2021-001",
-      semester: "Fall 2024",
+      semester: "Fall 2025",
       status: "pending",
       courses: ["CS401", "CS402", "CS403", "MATH301"],
       submittedDate: "2024-01-15",
@@ -18,9 +18,9 @@ export default function Advisor() {
     },
     {
       id: 2,
-      studentName: "Emily Johnson",
+      studentName: "Abdulrahman Alnsour",
       studentId: "CS2021-002",
-      semester: "Fall 2024",
+      semester: "Fall 2025",
       status: "approved",
       courses: ["CS301", "CS302", "MATH201", "PHY101"],
       submittedDate: "2024-01-14",
@@ -28,9 +28,9 @@ export default function Advisor() {
     },
     {
       id: 3,
-      studentName: "Michael Brown",
+      studentName: "Amer Dababneh",
       studentId: "CS2022-001",
-      semester: "Fall 2024",
+      semester: "Fall 2025",
       status: "rejected",
       courses: ["CS501", "CS502"],
       submittedDate: "2024-01-13",

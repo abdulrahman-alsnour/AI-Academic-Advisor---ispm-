@@ -1,0 +1,115 @@
+@startuml Component Diagram - AI Academic Advisor
+
+title Component Architecture Diagram
+
+package "Frontend Application" {
+  
+  package "Pages" {
+    [Login Page] as LoginPage
+    [Student Dashboard] as StudentDashboard
+    [Course Catalog] as CourseCatalog
+    [AI Chatbot] as Chatbot
+    [Notifications] as Notifications
+    [Advisor Dashboard] as AdvisorDashboard
+  }
+  
+  package "Components" {
+    [AppSidebar] as Sidebar
+    [TopBar] as TopBar
+    [StatCard] as StatCard
+    [NavLink] as NavLink
+    [ProtectedRoute] as ProtectedRoute
+    [AdminRoute] as AdminRoute
+  }
+  
+  package "Context" {
+    [AuthContext] as AuthContext
+  }
+  
+  package "Services" {
+    [AuthService] as AuthService
+    [CourseService] as CourseService
+    [PlanService] as PlanService
+    [AIService] as AIService
+    [NotificationService] as NotificationService
+  }
+  
+  package "Data" {
+    [studyPlanData] as StudyPlanData
+    [Course Models] as CourseModels
+  }
+}
+
+package "UI Framework" {
+  [React] as React
+  [TypeScript] as TypeScript
+  [Tailwind CSS] as Tailwind
+  [shadcn/ui] as Shadcn
+  [React Router] as Router
+}
+
+LoginPage --> AuthService
+StudentDashboard --> CourseService
+StudentDashboard --> PlanService
+CourseCatalog --> CourseService
+Chatbot --> AIService
+Notifications --> NotificationService
+AdvisorDashboard --> PlanService
+
+AuthService --> AuthContext
+CourseService --> StudyPlanData
+PlanService --> StudyPlanData
+AIService --> CourseService
+
+LoginPage --> ProtectedRoute
+StudentDashboard --> ProtectedRoute
+CourseCatalog --> ProtectedRoute
+Chatbot --> ProtectedRoute
+Notifications --> ProtectedRoute
+AdvisorDashboard --> AdminRoute
+AdminRoute --> ProtectedRoute
+
+StudentDashboard --> Sidebar
+CourseCatalog --> Sidebar
+Chatbot --> Sidebar
+Notifications --> Sidebar
+AdvisorDashboard --> Sidebar
+
+StudentDashboard --> TopBar
+CourseCatalog --> TopBar
+Chatbot --> TopBar
+Notifications --> TopBar
+AdvisorDashboard --> TopBar
+
+StudentDashboard --> StatCard
+CourseCatalog --> Shadcn
+Chatbot --> Shadcn
+Notifications --> Shadcn
+AdvisorDashboard --> Shadcn
+
+ProtectedRoute --> AuthContext
+AdminRoute --> AuthContext
+
+React --> LoginPage
+React --> StudentDashboard
+React --> CourseCatalog
+React --> Chatbot
+React --> Notifications
+React --> AdvisorDashboard
+
+Router --> LoginPage
+Router --> StudentDashboard
+Router --> CourseCatalog
+Router --> Chatbot
+Router --> Notifications
+Router --> AdvisorDashboard
+
+Tailwind --> LoginPage
+Tailwind --> StudentDashboard
+Tailwind --> CourseCatalog
+Tailwind --> Chatbot
+Tailwind --> Notifications
+Tailwind --> AdvisorDashboard
+
+@enduml
+

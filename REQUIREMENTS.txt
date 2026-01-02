@@ -1,0 +1,192 @@
+FUNCTIONAL REQUIREMENTS
+
+AUTHENTICATION AND USER MANAGEMENT
+
+FR-1: The system shall provide a login page with email and password authentication, displaying the University of Jordan logo.
+
+FR-2: The system shall support two user roles: Student and Admin (Academic Advisor), with different access levels for each role.
+
+FR-3: The system shall allow users to select their role (Student or Admin) during login using a tabbed interface.
+
+FR-4: The system shall maintain user login sessions using browser localStorage, keeping users logged in until they log out.
+
+FR-5: The system shall protect all main pages, redirecting unauthenticated users to the login page.
+
+FR-6: The system shall restrict the Advisor Dashboard to Admin users only, redirecting students who attempt access.
+
+STUDENT FEATURES
+
+FR-7: The system shall display a student dashboard showing:
+- Completed credits (out of 132 required)
+- Current GPA
+- Enrolled courses count
+- Graduation progress percentage
+- Study plan progress by category (Core, Electives, General Education)
+- Upcoming courses for next semester
+- Recent activity feed
+
+FR-8: The system shall provide a course catalog containing all 132 credit hours with course code, name, credits, prerequisites, type, recommended semester, and department.
+
+FR-9: The system shall allow students to search courses by name or code with real-time filtering.
+
+FR-10: The system shall allow students to filter courses by type: All, University Requirements, Faculty Requirements, Core, or Elective.
+
+FR-11: The system shall display detailed course information including prerequisites, credits, recommended placement, and department in organized cards.
+
+FR-12: The system shall provide an AI chatbot interface for students to ask academic questions and receive course recommendations.
+
+FR-13: The system shall display suggested questions in the chatbot to help students start conversations.
+
+FR-14: The system shall maintain a scrollable chat history with timestamps for user and AI messages.
+
+FR-15: The system shall display notifications to students including plan approvals, course recommendations, deadlines, prerequisite alerts, and meeting schedules.
+
+FR-16: The system shall categorize notifications by type (Success, Info, Warning, Error) with appropriate visual indicators.
+
+FR-17: The system shall track notification read/unread status and allow marking notifications as read.
+
+FR-18: The system shall provide tabs to filter notifications: All, Unread, and Read.
+
+FR-19: The system shall show a student sidebar with links to Dashboard, Courses, AI Chatbot, and Notifications (no Advisor link).
+
+ADMIN FEATURES
+
+FR-20: The system shall display an advisor dashboard with statistics showing counts of pending reviews, approved plans, and rejected plans.
+
+FR-21: The system shall display student study plans in cards showing student name, ID, semester, status, requested courses, dates, notes, and rejection reasons.
+
+FR-22: The system shall provide Approve and Reject buttons for pending student plans.
+
+FR-23: The system shall display visual status indicators (icons and color-coded badges) for Pending, Approved, and Rejected plans.
+
+FR-24: The system shall allow advisors to filter plans by status using tabs: All Plans, Pending, Approved, Rejected.
+
+FR-25: The system shall show an admin sidebar with only the Advisor link (no other navigation items).
+
+FR-26: The system shall redirect admin users to the Advisor Dashboard upon login.
+
+DATA MANAGEMENT
+
+FR-27: The system shall maintain complete course data for the 132-credit CIS program organized by:
+- University Requirements (27 credits)
+- Faculty Requirements (24 credits)
+- Core Courses (69 credits)
+- Elective Courses (12 credits)
+
+FR-28: The system shall maintain prerequisite relationships between courses for validation and information display.
+
+FR-29: The system shall organize courses by recommended year (1-4) and semester (1-2).
+
+FR-30: The system shall store student plan submissions including student info, courses, dates, status, and advisor feedback.
+
+USER INTERFACE
+
+FR-31: The system shall provide a responsive interface that works on desktop, tablet, and mobile devices.
+
+FR-32: The system shall display University of Jordan branding (logo) on login page and sidebar.
+
+FR-33: The system shall provide consistent navigation (sidebar and top bar) across all pages.
+
+FR-34: The system shall provide visual feedback for user actions (hover states, loading indicators, toast notifications).
+
+FR-35: The system shall provide a logout button in the top navigation bar.
+
+NON-FUNCTIONAL REQUIREMENTS
+
+PERFORMANCE
+
+NFR-1: The system shall load pages within 3 seconds under normal network conditions.
+
+NFR-2: The system shall respond to user interactions within 1 second.
+
+NFR-3: The system shall filter course search results within 500 milliseconds.
+
+NFR-4: The system shall support at least 100 concurrent users without performance issues.
+
+USABILITY
+
+NFR-5: The system shall provide an intuitive interface requiring minimal training.
+
+NFR-6: The system shall provide clear navigation with descriptive labels and icons.
+
+NFR-7: The system shall display user-friendly error messages with suggested actions.
+
+NFR-8: The system shall support keyboard navigation and appropriate color contrast for accessibility.
+
+NFR-9: The system shall be fully functional on mobile devices with touch-friendly elements.
+
+RELIABILITY
+
+NFR-10: The system shall maintain 99% uptime during normal operating hours.
+
+NFR-11: The system shall maintain user sessions reliably without unexpected logouts.
+
+NFR-12: The system shall handle errors gracefully without crashing, showing error messages to users.
+
+NFR-13: The system shall ensure data integrity, preventing corruption of student records and course data.
+
+SECURITY
+
+NFR-14: The system shall require valid credentials for access to protected resources.
+
+NFR-15: The system shall enforce role-based access control at route and component levels.
+
+NFR-16: The system shall implement secure session management.
+
+NFR-17: The system shall protect sensitive student and academic data from unauthorized access.
+
+NFR-18: The system shall validate all user inputs to prevent security vulnerabilities.
+
+MAINTAINABILITY
+
+NFR-19: The system shall use modular component architecture for easy maintenance and updates.
+
+NFR-20: The system code shall be well-documented with clear comments and type definitions.
+
+NFR-21: The system shall use modern, well-supported technologies (React, TypeScript, Tailwind CSS).
+
+NFR-22: The system architecture shall support future expansion and integration with backend systems.
+
+COMPATIBILITY
+
+NFR-23: The system shall work on modern browsers (Chrome, Firefox, Safari, Edge latest versions).
+
+NFR-24: The system shall function on Windows, macOS, and Linux through web browsers.
+
+NFR-25: The system shall be accessible on desktop, laptop, tablet, and smartphone devices.
+
+DEPLOYMENT
+
+NFR-26: The system shall support production builds using Vite build tools.
+
+NFR-27: The system shall support different configuration environments (development, staging, production).
+
+NFR-28: The system shall be deployable to various hosting platforms (web servers, cloud, containers).
+
+USER EXPERIENCE
+
+NFR-29: The system shall provide a clean, modern, professional design appropriate for academic use.
+
+NFR-30: The system shall use a consistent color scheme with green as primary color (University branding).
+
+NFR-31: The system shall use clear, readable typography with appropriate font sizes.
+
+NFR-32: The system shall display loading indicators during data operations.
+
+NFR-33: The system shall use toast notifications for user action feedback.
+
+DATA
+
+NFR-34: The system shall maintain complete and accurate course information for all required fields.
+
+NFR-35: The system shall accurately calculate and display student progress (credits, GPA, graduation status).
+
+NFR-36: The system shall maintain data consistency across all views and components.
+
+FUTURE EXTENSIBILITY
+
+NFR-37: The system architecture shall support integration with RESTful APIs or GraphQL endpoints.
+
+NFR-38: The system shall be structured to support future database integration for persistent storage.
+
+NFR-39: The system shall be designed to support advanced AI services for enhanced chatbot capabilities.
