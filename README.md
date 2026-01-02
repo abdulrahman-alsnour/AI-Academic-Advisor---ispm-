@@ -66,7 +66,7 @@ plan-my-major/
 │   ├── data/           # Course data and study plans
 │   └── assets/         # Images and static files
 ├── public/             # Public assets
-└── docs/               # Documentation files
+
 ```
 
 
