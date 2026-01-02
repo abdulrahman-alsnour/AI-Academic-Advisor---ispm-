@@ -69,11 +69,6 @@ plan-my-major/
 └── docs/               # Documentation files
 ```
 
-## Documentation
-
-- `INTRODUCTION.txt` - System introduction and objectives
-- `REQUIREMENTS.txt` - Functional and non-functional requirements
-- Architecture diagrams (PlantUML files)
 
 ## License
 
